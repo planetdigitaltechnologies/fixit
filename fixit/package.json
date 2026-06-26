@@ -1,0 +1,12 @@
+{
+  "name": "fixit",
+  "version": "1.0.0",
+  "description": "A full production PWA for connecting clients with verified plumbers, electricians, and mechanics in Kenya.",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="theme-color" content="#00C896">
+  <meta name="description" content="FixIt – Verified plumbers, electricians & mechanics on demand. Live GPS tracking, secure payments, real-time ID verification.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FixIt">
+  <meta property="og:title" content="FixIt – Home Services On Demand">
+  <meta property="og:description" content="Verified plumbers, electricians & mechanics – tracked live, paid securely in Kenya.">
+  <meta property="og:type" content="website">
+  <title>FixIt – Home Services On Demand</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+  <!-- PWA Install Banner -->
+  <div id="installBanner" class="install-banner hidden">
+    <div class="install-left">
+      <div class="install-icon-wrap">🔧</div>
+      <div class="install-text">
+        <strong>Install FixIt</strong>
+        <span>Works offline · Fast · Free</span>
+      </div>
+    </div>
+    <div class="install-actions">
+      <button class="btn-install" id="installBtn">Install App</button>
+      <button class="btn-dismiss" id="dismissInstall">✕</button>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toastContainer"></div>
+
+  <!-- App shell -->
+  <div id="app">
+    <div class="splash-screen">
+      <div class="splash-logo">Fix<span>It</span></div>
+      <div class="splash-spinner"></div>
+    </div>
+  </div>
+
+  <!-- Bottom nav (shown when logged in) -->
+  <nav class="bottom-nav hidden" id="bottomNav">
+    <button class="nav-item active" data-route="home" onclick="router.go('home')">
+      <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
+    </button>
+    <button class="nav-item" data-route="search" onclick="router.go('search')">
+      <span class="nav-icon">🔍</span><span class="nav-label">Find</span>
+    </button>
+    <button class="nav-item" data-route="history" onclick="router.go('history')">
+      <span class="nav-icon">📋</span><span class="nav-label">Bookings</span>
+    </button>
+    <button class="nav-item" data-route="account" onclick="router.go('account')">
+      <span class="nav-icon">👤</span><span class="nav-label">Account</span>
+    </button>
+  </nav>
+
+  <script src="/js/db.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/map.js"></script>
+  <script src="/js/router.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

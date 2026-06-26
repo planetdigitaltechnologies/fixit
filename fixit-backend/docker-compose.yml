@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       fixit_db
+      POSTGRES_USER:     fixit_user
+      POSTGRES_PASSWORD: fixit_pass_change_in_prod
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d   # auto-runs schema on first start
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fixit_user -d fixit_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV:       production
+      PORT:           4000
+      DATABASE_URL:   postgresql://fixit_user:fixit_pass_change_in_prod@postgres:5432/fixit_db
+      JWT_SECRET:     REPLACE_WITH_SECURE_RANDOM_64_CHARS
+      JWT_EXPIRES_IN: 30d
+      FRONTEND_URL:   http://localhost:4000
+      UPLOAD_DIR:     ./uploads
+    ports:
+      - "4000:4000"
+    volumes:
+      - uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  pgdata:
+  uploads:
